@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-start">Symbol</th>
+            <th class="text-start">Name</th>
+            <th class="text-end">Shares</th>
+            <th class="text-end">Price</th>
+            <th class="text-end">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for asset in assets %}
+            <tr>
+                <td class="text-start">{{ asset.symbol }}</td>
+                <td class="text-start">{{ asset.name }}</td>
+                <td class="text-end">{{ asset.shares }}</td>
+                <td class="text-end">{{ "%3.2f" | format(asset.price) }}</td>
+                <td class="text-end">{{ "%3.2f" | format(asset.total) }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfooter>
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+            <td class="border-0 fw-bold text-end" colspan="4">{{ "%3.2f" | format(cash) }}</td>
+        </tr>
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4">Assets</td>
+            <td class="border-0 fw-bold text-end" colspan="4">{{ "%3.2f" | format(sum_assets) }}</td>
+        </tr>
+        <tr>
+            <td class="border-0 fw-bold text-end" colspan="4">Total</td>
+            <td class="border-0 fw-bold text-end" colspan="4">{{ "%3.2f" | format(total) }}</td>
+        </tr>
+    </tfooter>
+</table>>
+{% endblock %}

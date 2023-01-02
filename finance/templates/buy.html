@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" min = 1 id="shares" name="shares" placeholder="Shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Buy</button>
+        <div class="mb-3">
+            {% if state == "error" %}
+            <br/>
+                <p>There is no share with symbol {{ symbol }}!!!</p>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {% if state == "no_money" %}
+            <br/>
+                <p>Not enough funds in the account!!!</p>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <br/>
+            <p>Your available cash: ${{ cash }}
+        </div>
+    </form>
+{% endblock %}

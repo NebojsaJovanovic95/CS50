@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/settings" method="post">
+        <div class="mb-3">
+            <p>{{ username }}</p>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="newpassword" name="newpassword" placeholder="New Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Repeat Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+        <div class="mb-3">
+            {% if state == "incorrect" %}
+            <br/>
+                <p>Password is incorrect!!!</p>
+            {% elif state == "no match" %}
+            <br/>
+                <p>Must enter same new password twice!!!</p>
+            {% elif state == "match" %}
+            <br/>
+                <p>Password Update Successfull!!!</p>
+            {% endif %}
+        </div>
+    </form>
+{% endblock %}

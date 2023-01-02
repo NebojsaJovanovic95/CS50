@@ -1,0 +1,45 @@
+{% extends "profile.html" %}
+
+{% block title %}
+    Purchase history | Item Mode
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-start">Name</th>
+                <th class="text-start">Class</th>
+                <th class="text-start">Brand</th>
+                <th class="text-start">Country</th>
+                <th class="text-start">Region</th>
+                <th class="text-start">Volume</th>
+                <th class="text-end">Alc %</th>
+                <th class="text-end">Year</th>
+                <th class="text-end">Quantity</th>
+                <th class="text-end">Unit Price</th>
+                <th class="text-end">Total</th>
+                <th class="text-end">Purchase Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases | reverse %}
+                <tr>
+                    <td class="text-start">{{ purchase.name }}</td>
+                    <td class="text-start">{{ purchase.class }}</td>
+                    <td class="text-start">{{ purchase.brand }}</td>
+                    <td class="text-start">{{ purchase.country }}</td>
+                    <td class="text-start">{{ purchase.region }}</td>
+                    <td class="text-end">{{ "%3.2f" | format(purchase.volume) }} ml</td>
+                    <td class="text-end">{{ "%3.2f" | format(purchase.alcohol) }} %</td>
+                    <td class="text-end">{{ purchase.year }}</td>
+                    <td class="text-end">{{ purchase.quantity }}</td>
+                    <td class="text-end">{{ purchase.item_price }}</td>
+                    <td class="text-end">{{ purchase.total }}</td>
+                    <td class="text-end">{{ purchase.transaction_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

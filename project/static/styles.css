@@ -1,0 +1,64 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+.main_navigation{
+    background-color: #ffffff;
+    padding: 5px;
+    margin: 5px;
+    font-color: black;
+}
+
+.content{
+    background-color: #ffffff;
+    padding: 5px;
+    margin: 5px;
+}
+
+.basket{
+    background-color: #ffffff;
+    padding: 5px;
+    margin: 5px;
+    opacity:1;
+}
+
+.basket_general{
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.basket_items{
+    background-color: #ffffff;
+    padding: 2px;
+}
+
+.purchase{
+    background-color: #ffffff;
+    padding: 2px;
+}
+
+.purchase_element{
+    background-color: #ffffff;
+    padding: 2px;
+    align-self: center;
+}

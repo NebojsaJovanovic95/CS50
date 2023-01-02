@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select class="form-select mx-auto w-auto" name="symbol">
+                <option disabled selected>Symbol</option>
+                {% for asset in assets %}
+                <option value="{{ asset.symbol }}">{{ asset.symbol }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" min="1" id="shares" name="shares" placeholder="Shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+        <div class="mb-3">
+            {% if state == "error" %}
+            <br/>
+                <p>There is no share!!!</p>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {% if state == "no_shares" %}
+            <br/>
+                <p>Not enough shares in the account!!!</p>
+            {% endif %}
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile | Rewards
+{% endblock %}
+
+{% block main %}
+
+<div class="content" style="font-size: 32px;">Hello {{ username }}</div>
+<div class="content" style="font-size: 32px;">You have {{ points }} points</div>
+<table class="table">
+    <tr>
+        <td>
+            <div class="navbar-nav me-auto mt-2" style="font-size: 32px;">
+                <a class="nav-link" href="/history">View by Item</a>
+            </div>
+        </td>
+        <td>
+            <div class="navbar-nav me-auto mt-2" style="font-size: 32px;">
+                <a class="nav-link" href="/baskets">View by Baskets</a>
+            </div>
+        </td>
+    </tr>
+</table>
+{% block content %}
+
+{% endblock %}
+
+{% endblock %}

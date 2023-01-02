@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/deposit" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="deposit" name="deposit" placeholder="Deposit" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Deposit</button>
+        <div class="mb-3">
+            {% if state == "done" %}
+            <br/>
+                <p>Deposit Successfull!!!</p>
+            {% elif state == "negative" %}
+            <br/>
+                <p>Must deposit a positive amount!!!</p>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <br/>
+            <p>Your available cash: ${{ "%3.2f" | format(cash) }}
+        </div>
+    </form>
+{% endblock %}

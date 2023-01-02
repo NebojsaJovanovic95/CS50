@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Quote</button>
+    </form>
+
+        <div class="mb-3">
+        {% if state == "quoted" %}
+        <br/>
+            <p>A share of {{ name }} ({{ symbol }}) costs $ {{ price }}</p>
+        {% endif %}
+        {% if state == "error" %}
+        <br/>
+            <p>There is no share with symbol {{ symbol }}!!!</p>
+        {% endif %}
+        </div>
+{% endblock %}

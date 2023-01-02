@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Manager | Add Items
+{% endblock %}
+
+{% block main %}
+
+<form action="/manager" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="name" name="name" placeholder="Name" type="text">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="class" name="class" placeholder="Red / White / Rose" type="text">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="brand" name="brand" placeholder="Brand" type="text">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="country" name="country" placeholder="Country of Origin" type="text">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="region" name="region" placeholder="Region" type="text">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="volume" name="volume" placeholder="Volume" type="Number" step = 0.01>
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="alcohol" name="alcohol" placeholder="Alc %" type="Number" step = 0.01>
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="year" name="year" placeholder="Year of Harvest" type="Number">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="price" name="price" placeholder="Price" type="Number" step = 0.01>
+    </div>
+    <button class="btn btn-primary" type="submit">Add Product</button>
+    <div class="mb-3">
+        {% if state == "invalid" %}
+        <br/>
+            <p>{{ error_message }}</p>
+        {% endif %}
+    </div>
+</form>
+{% block history %}
+
+{% endblock %}
+
+{% endblock %}

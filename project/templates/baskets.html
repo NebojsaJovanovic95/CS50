@@ -1,0 +1,93 @@
+{% extends "profile.html" %}
+
+{% block title %}
+    Purchase History | Basket Mode
+{% endblock %}
+
+{% block content %}
+    {% for basket in baskets.values() | sort(attribute = 'transaction_date', reverse = True) %}
+    <div class="basket">
+        <table class="table">
+            <tr>
+                <td>
+                    <div class="basket_items">
+                            {% for purchase in basket.purchases | reverse %}
+                            <div class="purchase">
+                                <table class = "table">
+                                    <tr>
+                                        <td>
+                                            <div class="mb-3">
+                                                {{ purchase.name }}
+                                            </div>
+                                            <div class="mb-3">
+                                                {{ purchase.class }}
+                                            </div>
+                                            <div class="mb-3">
+                                                {{ purchase.brand }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mb-3">
+                                                {{ purchase.country }}
+                                            </div>
+                                            <div class="mb-3">
+                                                {{ purchase.region }}
+                                            </div>
+                                            <div class="mb-3">
+                                                {{ "Year: %d" | format(purchase.year) }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mb-3">
+                                                {{ "Volume: %3.2f ml" | format(purchase.volume) }}
+                                            </div>
+                                            <div class="mb-3">
+                                                {{ "Alcohol: %3.2f" | format(purchase.alcohol) }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tfoot>
+                                        <tr>
+                                            <td>
+                                                <div class="mb-3">
+                                                    {{ "Quantity: $ %3.2f" | format(purchase.quantity) }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mb-3">
+                                                    {{ "Unit Price: $ %3.2f" | format(purchase.item_price) }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="mb-3">
+                                                    {{ "Total: $ %3.2f" | format(purchase.total) }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            {% endfor %}
+                    </div>
+                </td>
+                <td>
+                    <div class="basket_general">
+                        <div class="mb-3">
+                            <p>Price paid: {{ "$ %3.2f" | format(basket.basket_price) }}
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                            <p>Points earned: {{ "%3.2f" | format(basket.points_earned) }}
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                            <p>Transaction Date: {{ basket.transaction_date }}
+                            </p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+{% endblock %}

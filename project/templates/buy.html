@@ -1,0 +1,72 @@
+{% extends "profile.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block content %}
+    <form action="/buy" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-start">Name</th>
+                    <th class="text-start">Class</th>
+                    <th class="text-start">Brand</th>
+                    <th class="text-start">Country</th>
+                    <th class="text-start">Region</th>
+                    <th class="text-start">Volume</th>
+                    <th class="text-end">Alc %</th>
+                    <th class="text-end">Year</th>
+                    <th class="text-end">Quantity</th>
+                    <th class="text-end">Unit Price</th>
+                    <th class="text-end">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wine in wines | reverse %}
+                    <tr>
+                        <td class="text-start">{{ wine.name }}</td>
+                        <td class="text-start">{{ wine.class }}</td>
+                        <td class="text-start">{{ wine.brand }}</td>
+                        <td class="text-start">{{ wine.country }}</td>
+                        <td class="text-start">{{ wine.region }}</td>
+                        <td class="text-end">{{ "%3.2f" | format(wine.volume) }} ml</td>
+                        <td class="text-end">{{ "%3.2f" | format(wine.alcohol) }} %</td>
+                        <td class="text-end">{{ wine.year }}</td>
+                        <td class="text-end">
+                            <div class="mb-3">
+                                <input id="quantity{{ wine.id }}" autocomplete="off" autofocus class="form-control mx-auto w-auto" name="quantity{{wine.id}}" placeholder="Quantity" type="number">
+                            </div>
+                        </td>
+                        <td class="text-end">{{ "$ %3.2f" | format(wine.price) }}</td>
+                        <td class="text-end">
+                            <script>
+                                document.getElementById("quantity{{ wine.id }}").onkeyup = function() {
+                                    let sum = document.getElementById("basket_total").innerHTML;
+                                    let this_total = document.getElementById("total{{ wine.id }}").innerHTML;
+                                    // before updating anything I record the current basket_sum and the total that will be changing
+                                    // then I take what needs to be the new total
+                                    let new_total = this.value * {{ wine.price }};
+                                    // I update the local total
+                                    document.getElementById("total{{ wine.id }}").innerHTML = new_total;
+                                    // I update the basket total as
+                                    // old sum - old local total + new local total
+                                    let new_sum = sum - this_total + new_total
+                                    document.getElementById("basket_total").innerHTML = new_sum.toFixed(2);
+                                    // this method save me from having to for loop through all inputs
+                                }
+                            </script>
+                            <p id = "total{{ wine.id }}"></p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        <div class="mb-3">
+            Basket total price ($)
+            <p id = "basket_total">0</p>
+        </div>
+        <button class="btn btn-primary" type="submit">Buy</button>
+    </form>
+{% endblock %}
